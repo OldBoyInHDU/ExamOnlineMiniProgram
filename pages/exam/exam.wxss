@@ -1,0 +1,23 @@
+/* pages/test/test.wxss */
+
+/* .page_header_question{
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+    border: 1rpx solid #000;
+    overflow: hidden;
+    border-radius: 5rpx;
+} */
+  
+.page_header{
+    margin-left: 10rpx;
+  
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    margin: 50rpx auto;
+}
+  
+  

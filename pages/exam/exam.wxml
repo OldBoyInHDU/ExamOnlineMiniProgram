@@ -1,0 +1,46 @@
+<!--pages/test/test.wxml-->
+
+<view class="page" hover='true' hover-stay-time="20000">
+    <view class='page_header'>
+        <view class="page_header_num">
+            <view class='page_header_question' wx:for="{{questionList}}" wx:key="id">
+                <!-- 第{{index+1}}/10题： -->
+                <van-divider contentPosition="center" dashed >第{{index+1}}/10题</van-divider>
+                {{item.questionContent}}
+                <van-cell-group>
+                <van-field
+                    value="{{ value }}"
+                    label="答案"
+                    placeholder="请输入你的答案"
+                    border="{{ false }}"
+                    bind:change="onChange"
+                    bind:input="answerInput"
+                    bind:blur="onBlur"
+                    data-questionNum="{{index}}"
+                />
+            </van-cell-group>
+            </view>
+        </view>
+    </view>
+
+    <!-- <van-divider /> -->
+
+    <view class="page_body">
+        <view class="page_body_num">
+            <!-- <van-cell-group>
+                <van-field
+                    value="{{ value }}"
+                    label="答案"
+                    placeholder="请输入你的答案"
+                    border="{{ false }}"
+                    bind:change="onChange"
+                />
+            </van-cell-group> -->
+        </view>
+    </view>
+
+    <van-divider />
+
+    <van-button type="primary" class="btn" bindtap="tapToExamResult">提交</van-button>
+
+</view>

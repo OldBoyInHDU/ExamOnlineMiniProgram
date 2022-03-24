@@ -1,0 +1,12 @@
+<view class="text-container">
+    <rich-text class="headline2" nodes="<h2>测试已完成！</h2>"></rich-text>
+</view>
+
+<view class="result">
+    <view>本次测试总共10道题</view>
+    <view><text>答对 {{rightnum}} </text>道题</view>
+    <view><text style="color: red;">答错 {{wrongnum}} 道题</text></view>
+    <view><text>本次测试得 {{grades}} 分</text></view>
+</view>
+
+<van-button type="primary" class="btn" bindtap="tapReturnExamtab">返回主页</van-button>

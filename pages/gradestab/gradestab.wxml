@@ -1,0 +1,97 @@
+<view wx:if="{{!isLogged}}">
+  <van-cell-group>
+    <van-field
+      value="{{ username }}"
+      required
+      clearable
+      label="管理员"
+      
+      placeholder="请输入用户名"
+      bind:input="inputUsername"
+      bind:blur="onBlurUsername"
+    />
+
+    <van-field
+      value="{{ password }}"
+      type="password"
+      label="密码"
+      placeholder="请输入密码"
+      required
+      border="{{ false }}"
+      bind:input="inputPassword"
+      bind:blur="onBlurPassword"
+    />
+  </van-cell-group>
+
+  <van-button type="primary" class="btn" bindtap="btnLogin">登陆</van-button>
+
+  <van-cell title="展示弹出层" is-link bind:click="showPopup" />
+
+  
+    <van-popup show="{{ show }}" bind:close="onClose">账号密码错误!</van-popup>
+  
+</view>
+
+
+
+
+
+
+
+<!-- 登陆成功后显示的页面 -->
+<view wx:else>
+  <van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tab title="试卷生成">
+      <van-cell-group>
+        <van-field
+          value="{{ value }}"
+          placeholder="请输入考试日期，如：220314"
+          label="考试日期"
+          border="{{ true }}"
+          bind:change="onChange"
+          bind:blur="onBlurExamDate"
+        />
+      </van-cell-group>
+      <van-button type="primary" class="btn" bindtap="btnGenerateExamPaper">生成试卷</van-button>
+
+      <van-cell title="展示弹出层" is-link bind:click="showPopup2" />
+      <van-popup custom-style="height: 10%;" show="{{ isGenerated }}" bind:close="onClose2">{{examdate}}期试卷已生成</van-popup>
+      
+    </van-tab>
+
+    
+
+
+    <van-tab title="成绩查询">
+      <!-- 查询条件 -->
+      <van-cell-group>
+        <van-field
+          value="{{ sms }}"
+          center
+          clearable
+          label="工号"
+          placeholder="请输入查询条件"
+          border="{{ false }}"
+          use-button-slot>
+
+            <van-button slot="button" size="small" type="primary">
+              查询
+            </van-button>
+        </van-field>
+      </van-cell-group>
+
+      <!-- table组件 -->
+      <table-view 
+          headers="{{tableHeader}}" 
+          data="{{ row }}" 
+          stripe="{{ stripe }}"
+          border="{{ border }}"
+      />
+    </van-tab>
+
+  </van-tabs>
+
+  
+
+</view>
+

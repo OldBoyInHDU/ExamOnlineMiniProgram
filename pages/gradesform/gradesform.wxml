@@ -1,0 +1,8 @@
+
+
+<table-view 
+    headers="{{tableHeader}}" 
+    data="{{ row }}" 
+    stripe="{{ stripe }}"
+    border="{{ border }}"
+/>

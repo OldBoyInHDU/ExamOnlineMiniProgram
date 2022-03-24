@@ -1,0 +1,49 @@
+<!-- 通知栏 -->
+<van-notice-bar
+  left-icon="volume-o"
+  text="使用过程中遇到问题，请联系黄桁（668803）"
+  mode="closeable"
+/>
+
+<view class="text-container">
+    <rich-text class="headline2" nodes="<h2>工艺指标在线测试题{{examdate}}期</h2>"></rich-text>
+</view>
+
+<van-cell-group>
+  <van-field
+    label="工号"
+    required
+    value="{{ value }}"
+    placeholder="请输入工号"
+    border="{{ true }}"
+    bind:change="onChange"
+    bind:input="numInput"
+    bind:onBlur="onBlurNum"
+  />
+  <van-field
+    label="姓名"
+    required
+    value="{{ value }}"
+    placeholder="请输入姓名"
+    border="{{ true }}"
+    bind:change="onChange"
+    bind:input="nameInput"
+  />
+</van-cell-group>
+
+<van-button type="primary" class="btn" bindtap="btnTapJoinExam">参与考试</van-button>
+
+<van-cell title="展示弹出层" is-link bind:click="showPopup" />
+
+<view wx:if="{{!isInfoRight}}">
+  <van-popup custom-style="height: 10%;" show="{{ show }}" bind:close="onClose">工号姓名不匹配！请检查！</van-popup>
+</view>
+
+<view wx:elif="{{examStatus}}">
+  <van-popup custom-style="height: 10%;" show="{{ show }}" bind:close="onClose">您已参与考试！请勿重复答题！</van-popup>
+</view>
+
+
+
+
+

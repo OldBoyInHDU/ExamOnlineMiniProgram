@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "table-view": "../../miniprogram/miniprogram_npm/miniprogram-table-component",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "pages":[
+    
+    "pages/examtab/examtab",
+    "pages/exam/exam",
+    "pages/gradestab/gradestab",
+    "pages/gradesform/gradesform",
+    
+    "pages/examresult/examresult",
+    "pages/conn/conn",
+    
+    
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "navigationBarBackgroundColor": "#025D54",
+    "navigationBarTitleText": "在线测试",
+    "navigationBarTextStyle":"white",
+    
+    "backgroundColor": "#efefef",
+    "backgroundTextStyle":"dark"
+  },
+
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/examtab/examtab",
+      "text": "在线考试",
+      "iconPath": "images/exam.png",
+      "selectedIconPath": "images/exam-active.png"
+    },
+    {
+      "pagePath": "pages/gradestab/gradestab",
+      "text": "成绩查看",
+      "iconPath": "images/grades.png",
+      "selectedIconPath": "images/grades-active.png"
+    }
+  ]
+  },
+  
+  "sitemapLocation": "sitemap.json",
+
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index"
+    
+  }
+}

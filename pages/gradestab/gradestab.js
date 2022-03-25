@@ -5,13 +5,15 @@ Page({
      * 页面的初始数据
      */
     data: {
-      username: '',
-      password: '',
-      examdate: '',
-      isGenerated: false,
-      isLogged: true,//是否登陆
+      username: '',//管理员用户名
+      password: '',//管理员密码 zscj2022
+      examdate: '',//生成试卷的考试日期参数
+      isGenerated: false,//是否生成试卷
+      isLogged: false,//是否登陆
       show: false,//pop弹出
       active: 0,//tab标签
+      examDate: '',//成绩查询的考试日期参数
+      name: '',//成绩查询的姓名参数
 
       //表格数据
         stripe: true,
@@ -19,18 +21,18 @@ Page({
         outBorder: true,
         tableHeader: [
             {
-              prop: 'num',
+              prop: 'employeeNum',
               width: 150,
               label: '工号',
               color: '#55C355'
             },
             {
-              prop: 'name',
+              prop: 'employeeName',
               width: 150,
               label: '姓名'
             },
             {
-              prop: 'examdate',
+              prop: 'examDate',
               width: 150,
               label: '考试日期'
             },
@@ -46,16 +48,7 @@ Page({
             }
           ],
           
-          row: [
-            {
-                "id": 1,
-                
-                "num": "61655",
-                "name": '黄桁',
-                "examdate": '220314',
-                "grades": 90,
-            }
-          ],
+          row: [],
           msg: '暂无数据'
     },
 
@@ -67,6 +60,8 @@ Page({
       })
       // console.log(this.data.examdate)
     },
+
+    
     /**
      * 生成试卷
      */
@@ -92,20 +87,6 @@ Page({
               })
           }
         })
-    },
-
-    /**
-     * 
-     * 成绩查询
-     */
-    getEmployeesGrades() {
-
-    },
-    onChange(event) {
-      // wx.showToast({
-      //   title: `切换到标签 ${event.detail.name}`,
-      //   icon: 'none',
-      // });
     },
 
     inputUsername(event) {
@@ -149,11 +130,11 @@ Page({
       this.setData({ show: true });
     },
   
-  onClose() {
+    onClose() {
       this.setData({ show: false });
-   },
+    },
 
-   /**
+    /**
      * 弹出框2
      */
     showPopup2() {
@@ -165,10 +146,82 @@ Page({
     },
 
     /**
+     * 成绩查询tab
+     *
+     */
+
+    onBlurSearchExamDate(event) {
+      var tempExamDate = event.detail.value
+      this.setData({
+        examDate: tempExamDate
+      })
+    },
+    onBlurSearchName(event) {
+      var tempName = event.detail.value
+      this.setData({
+        name: tempName
+      })
+    },
+
+    /**
+     * 成绩查询
+     * 所有员工
+     */
+    getAllGrades() {
+        wx.request({
+          url: 'http://localhost:8080/getAllGrades',
+          method: "GET",
+          success: res => {
+            console.log(res.data)
+            this.setData({
+              row: res.data.data
+            })
+            
+          }
+        })
+    },
+
+    /**
+     * 成绩查询
+     * 条件：考试日期or姓名
+     * 动态查询
+     * 
+     */
+    getGradesByNameOrExamDate() {
+      wx.request({
+        url: 'http://localhost:8080/getGradesByNameOrExamDate',
+        method: "GET",
+        data: {
+          examDate: this.data.examDate,
+          name: this.data.name
+        },
+        success: res => {
+          console.log(res.data)
+          this.setData({
+            row: res.data.data
+          })
+        }
+      })
+    },
+
+    btnSearchGradesByNameOrExamDate() {
+      this.getGradesByNameOrExamDate()
+    },
+
+    onChange(event) {
+      // wx.showToast({
+      //   title: `切换到标签 ${event.detail.name}`,
+      //   icon: 'none',
+      // });
+    },
+
+
+
+    /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+      // this.getAllGrades()
     },
 
     /**

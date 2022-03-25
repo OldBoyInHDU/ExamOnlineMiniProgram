@@ -1,4 +1,9 @@
 <view wx:if="{{!isLogged}}">
+
+  <van-notice-bar
+  left-icon="volume-o"
+  text="该功能仅限管理员使用"
+/>
   <van-cell-group>
     <van-field
       value="{{ username }}"
@@ -61,7 +66,7 @@
 
     
 
-
+    <!-- 成绩查询tab -->
     <van-tab title="成绩查询">
       <!-- 查询条件 -->
       <van-cell-group>
@@ -69,16 +74,31 @@
           value="{{ sms }}"
           center
           clearable
-          label="工号"
-          placeholder="请输入查询条件"
-          border="{{ false }}"
+          label="考试日期"
+          placeholder="请输入考试日期，如：220314"
+          border="{{ true }}"
+          bind:change="onChange"
+          bind:blur="onBlurSearchExamDate"
+        >
+        </van-field>
+        <van-field
+          value="{{ sms }}"
+          center
+          clearable
+          label="姓名"
+          placeholder="请输入考生姓名"
+          border="{{ true }}"
+          bind:change="onChange"
+          bind:blur="onBlurSearchName"
           use-button-slot>
 
-            <van-button slot="button" size="small" type="primary">
+            <van-button slot="button" size="small" type="primary" bindtap="btnSearchGradesByNameOrExamDate">
               查询
             </van-button>
         </van-field>
       </van-cell-group>
+
+      <van-divider />
 
       <!-- table组件 -->
       <table-view 

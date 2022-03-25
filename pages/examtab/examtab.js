@@ -160,6 +160,13 @@ Page({
             })
             app.globalData.examdateGlobal = this.data.examdate
             console.log('考试期数：' + this.data.examdate)
+            },
+            fail: (res) => {
+                wx.showToast({
+                  title: '后台服务故障',
+                  icon: "error",
+                  duration: 3000
+                })
             }
         })
         
